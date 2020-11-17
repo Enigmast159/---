@@ -14,17 +14,18 @@ class MyWidget(QWidget):
 
     def run(self):
         self.key = True
+        self.repaint()
 
     def paintEvent(self, event):
+        qp = QPainter(self)
+        qp.begin(self)
+        qp.setBrush(QColor(255, 255, 0))
+        r = randrange(1, 150)
+        x = randrange(1, 420)
+        y = randrange(1, 450)
         if self.key:
-            qp = QPainter(self)
-            qp.begin(self)
-            qp.setBrush(QColor(255, 255, 0))
-            r = randrange(1, 150)
-            x = randrange(1, 420)
-            y = randrange(1, 450)
             qp.drawEllipse(x, y, r, r)
-            self.key = False
+        self.key = False
 
 
 if __name__ == '__main__':
